@@ -1,0 +1,199 @@
+console.log(response.routes[0].legs[0].steps[0].path[0].forEach(point){
+
+
+
+                    });
+
+
+ /*for(var i = 0; i < kelioKoordinaciuArray.length; i++){
+                console.log(kelioKoordinaciuArray[i]);
+            }*/
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Kelio salygos</title>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 95%;
+        width: 100%;
+        align: center;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+
+    </style>
+</head>
+<body>
+
+<!-- ivedimo laukai -->
+<nav class='navbar navbar-inverse navbar-fixed-top sticky' role='navigation'>
+    <div class="container-fluid">
+        <form onsubmit="calcRoute()" method = "post">
+            <!-- forma siuncia su GET    action=""           method="get"-->
+            <label>Iveskite keliones pradini adresa ir galutini adresa: </label>
+            <div class="form-group" id="kelionesIvedimas">
+                <input type="text" class="form-control" id="kelionesPradzia" placeholder="Pasirink keliones pradzia"
+                       name="kelioPradzia"/>
+                <input type="text" class="form-control" id="kelionesPabaiga" placeholder="Pasirink keliones pabaiga"
+                       name="kelioPabaiga"/>
+                <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <!--<p th:text="'Hello, ' + ${kelioPradzia} + '!' "/>-->
+                <!--<p th:text="'Hello, ' + ${kelioPabaiga} + '!' "/>-->
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div id="map"></div>
+<div class="mapas">
+    <script th:inline="javascript">
+
+
+        /*<![CDATA[*/
+            var kameros_id = [[${kameros_id}]];
+            var img = [[${img_src}]];
+            var name = [[${name}]];
+            var date = [[${data}]];
+            var latitude = [[${latitude}]];
+            var longitude = [[${longitude}]];
+            //var kooridinates = [];
+
+            function initMap() {
+                var map;
+                directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsService = new google.maps.DirectionsService();
+
+
+                //zemelapio sukurimas
+                map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: 54.8985, lng: 23.9036},
+                    zoom: 10
+                });
+                  directionsDisplay.setMap(map);
+
+
+
+                  var arIjungtas = false;
+                   function addKameruZymeklius(properties){
+                        var zymeklis = new google.maps.Marker({
+                            position: properties.koords,
+                            map: map,
+                            tile: properties.title
+                            //cia det icona icon:linkas/vieta jei desiu det kableli po map
+                        });
+
+                       if(properties.content){
+                            var infoWindow = new google.maps.InfoWindow({
+                            content: properties.content
+                       });
+
+                       zymeklis.addListener('click', function(){
+                            infoWindow.open(map, zymeklis);
+                            arIjungtas = true;
+                       });
+
+                   }
+
+                        map.addListener('click', function(){
+                            if (arIjungtas){
+                                infoWindow.close();
+                            }
+                        });
+                    }
+                    for(var i = 0; i < img.length; i++){
+                        addKameruZymeklius({
+                            koords:{lat: latitude[i], lng: longitude[i]},
+                            title: name[i],
+                            content: '<p>' + date[i] + '</p>' +
+                                '<img src=' + img[i] + 'height="240" width="240">'
+                        });
+                    }
+            }
+
+
+
+            function calcRoute(){
+                console.log("iskviestas calc");
+
+                    var pradzia = [[${kelioPradzia}]];
+                    var pabaiga = [[${kelioPabaiga}]];
+                    console.log(pradzia);
+                    console.log(pabaiga);
+
+                    var request = {
+                        origin: pradzia,
+                        destination: pabaiga,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                        provideRouteAlternatives: true
+                    };
+                    directionsService.route(request, function(result, status){
+                        if (status == google.maps.DirectionsStatus.OK){
+                            if (!response.routes[0].copyrights) {
+                                response.routes[0].copyrights = "Copyrights unknown.";
+                            }
+                            console.log("ALL GOOD!");
+                            directionsDisplay.setDirections(result);;
+
+                        }else{
+                            console.log("turbut nerado ");
+                            console.log(status);
+                        }
+                    });
+
+            }
+
+
+
+
+
+
+
+
+           for (var i = 0; i < img.length; i++){
+                //console.log(kameros_id[i]);
+                //console.log(img[i]);
+                //console.log(name[i]);
+                //console.log(date[i]);
+                //console.log(latitude[i]);
+                //console.log(longitude[i]);
+           }
+        /*]]>*/
+    </script>
+</div>
+
+    <!--<script>
+
+
+
+
+    </script>-->
+        <!--testas-->
+
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAne65xrXV38LdFHhnhS02udKhedelGHYo&amp;callback=initMap"
+        async="" defer=""></script>
+
+</body>
+</html>

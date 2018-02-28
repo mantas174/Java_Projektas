@@ -1,0 +1,148 @@
+﻿[2018.02.21] 18diena	projekto dokumentacija, nupiesimas kaip atrodys naudojant balsamiq
+
+    1.Projekto pavadinimas
+    2.Kokia problema spres
+    3.Ko reiks
+    4.MVP iki pristatymo
+    5.Kur reik pagalbos
+
+    1. kelio salygos
+    2. leis pasirinkti patogu kelia pagal kelio salygas
+        padaryt kad pakeliui esancias kameras rodytu zemelapi ir butu galima jas pasirinkti ir parodyti ju vaizda
+    3. DB, web puslapis tomcat?, javascriptas, google.maps biblioteka, spring velocity
+    4.
+    5.
+
+
+    1. Nupiesti visu langu dizaina ka matys vartotojas naudoti balsamiq
+
+    2.Kiekvienam langui ivertinti kokiu technologju reikes(DB, failai)
+
+    3.Kiekvienam langui ivertinti kokiu dalyku dar nezinot
+
+    4.Koks programos gyvavimo ciklas nuo plaeidimo iki isjungimo
+
+    5.Nuspresti is kur kokie duomenys lange ateina ir kur nukeliaus vartotojui kazka atlikus
+
+    6. kokia duombazes struktura
+
+    7.Kokios klases reikalingos
+
+
+
+
+    1. projektas.bmpr
+    2.DB(MYSQL), java spring velocity, maven, javascript, maps.google biblioteka, HTML, CSS
+
+    3. spring velocity - kaip naudot HTML failus duomenu perdavimui java'i,
+
+        javascript - kaip idet maps.google, kaip padaryt ivedus kelio pradzia ir pabaiga  kelia atvaizduotu zemelapyje,
+
+            kaip paspaudus ant kameros zymeklio rodytu jos vaizda
+
+            kaip pasirinkus kelia atitinkamu atstumu aplink ji isdeliotu kameras,
+
+    4. Ivedus marsruto pradzia ir pabaiga, zemelapyje bus parodoma keliai kuriais galima ta marsruta pasiekti,
+     ir atitinkamu atstumu nuo parinkto kelio bus atvazduota "mygtukai" kuriuos paspaudus sone bus rodomas atitinkamos
+     kameros vaizdas, uzvedus ant to "mygtuko" bus parasytas tikslus kameros adresas.
+    5.suvedus kelio "pradzia" ir "pabaiga" duomenys eis i kalse kurioje bus lyginami su duomenu bazeje padetais duomenim
+      ir pagal tai zemelapyje bus sudedamos kameros.
+    6.
+    kameruDuomenys
+        id
+        longtitude
+        latitude
+        adresas
+        kameros linkas(vieta kur gauti duomenis)
+
+    7.
+    Controller
+
+    DBActions
+
+    Main
+
+    Kameros
+
+
+
+
+
+
+
+[2018.02.22] 19 diena	git hub  projekto pradzia, google maps ikelimas
+
+--------------------------------------------daryt maven projekta,
+    Spring thymeleaf
+
+     Spring biblioteka
+        Einam i
+        https://projects.spring.io/spring-boot/
+
+
+    thymeleaf ir spring:
+        maven paprastas next...
+        spring maven dependencie https://projects.spring.io/spring-boot/
+        thymeleafe dependencie   http://blog.codeleak.pl/2014/04/how-to-spring-boot-and-thymeleaf-with-maven.html
+            where to put thymeleaf dependencies ↓  Basic setup Spring MVC + Thymeleaf with Maven
+            build plugin spring ↓
+
+        paketai java - lt.kaunascoding.""
+                        klase Main (su main metodu)
+                        - model
+                        -view
+                        -controller
+                            klase IndexController
+
+        main kodas is skaidriu  https://lookaside.fbsbx.com/file/Tomcat%20maven%20spring.pdf?token=AWw6ovwc1NMeb3AfSh6vYpu4FEngaZfreg7iKEqGjb541L37oxoSDpRzstxUionK_8ZY7crNguzSiZhGL2qXgRk24CLehL8dO15jl0KjQjtoV6OiVlteVneq7-7JvEwEg5HbM9ZiMmP29FjmHuBv9OKBglUmq3GIG5q_o_S2NasGeA
+        IndexController.java kodas is skaidriu @controller https://lookaside.fbsbx.com/file/Tomcat%20maven%20spring.pdf?token=AWw6ovwc1NMeb3AfSh6vYpu4FEngaZfreg7iKEqGjb541L37oxoSDpRzstxUionK_8ZY7crNguzSiZhGL2qXgRk24CLehL8dO15jl0KjQjtoV6OiVlteVneq7-7JvEwEg5HbM9ZiMmP29FjmHuBv9OKBglUmq3GIG5q_o_S2NasGeA
+
+        resource forlderi - new directory - templates - new htmlfile pv: index.html
+        indexcontroller return dalyje daryt index kad gaut index.html
+            nutrint @ResponseBody
+        index.html  pav pagr puslapis
+        konfiguracija (select run/debuf configuration) - + - aplication -nurodyt main klase
+        setting nustatyt kuri maven naudot   maven 3
+
+
+--------------------------------------------------------------------------------------
+
+
+https://github.com/mantas174/Java_Projektas/tree/67306bddadf773ee183a0a44b18acd9c7b8f3d9b
+
+    google map api key gaut https://developers.google.com/maps/documentation/javascript/get-api-key
+
+    google map error:
+        https://issues.onehippo.com/browse/ESSENTIALS-1050
+                        Error in the ftl and jsp for googlemaps. When a key is available it is given as a request parameter in this way:
+                        ?key=<key>&callback=<callback>
+                        The & must be replaced with
+                            &amp;
+                        to be valid html that can be parsed correctly by the HeadContributionTag.
+                        Error shown: [Fatal Error] :1:129: The reference to entity "callback" must end with the ';' delimiter.
+        https://developers.google.com/maps/documentation/javascript/error-messages
+
+
+
+[2018.02.23] 20 diena
+
+[2018.02.24-25] savaitgalis        DB kurimas, pildymas
+
+[2018.02.26] 21 diena               markeriu sudejimas, pop-up sukurimas
+
+[2018.02.27] 22diena                Kelio nupiesimas tarp pradinio ir galutinio kelio,  Atsiskaitymas
+==============================================================================================================================================================================================================================================================================================================================
+
+
+[]
+
+
+
+
+
+
+
+
+
+
+
